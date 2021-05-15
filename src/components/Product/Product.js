@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InvestmentAdvisory from './InvestmentAdvisory';
+import RendererComp from '../Product/RendererComp';
+import Popup from './Popup';
+//import { useHistory } from 'react-router-dom';
+//import { withRouter } from "react-router";
 
 class Product extends Component {
-    handleClick = () => {
-        const { id, addToCart, removeFromCart, isInCart } = this.props;
+    constructor(props) {
+        super(props);
+        this.state = {
+          showComponent: false,
+          isOpen: false,
+          setIsOpen: false
+        };
+        
+    }
 
-        if (isInCart) {
-            removeFromCart(id);
-        } else {
-            addToCart(id);
-        }
+    togglePopup = () => {
+        let b = this.state.isOpen;
+        this.setState({isOpen: !b});
+      }
+
+    handleClick = () => {
+        const { id, addToCart, removeFromCart, isInCart } = this.props.data;
+   //     const history = useHistory();
+        console.log("View Details Button clicked"+this.props.data.id);
+        
+        if (this.props.data.id == 1) {
+        //    history.push('/investmentAdvisory');
+            this.setState({
+                showComponent: true,
+              });
+        } 
     }
 
     render() {
-        const { name, price, currency, image, isInCart } = this.props;
+        const { name, price, currency, image, isInCart } = this.props.data;
 
         return (
             <div className="product thumbnail">
@@ -23,10 +46,10 @@ class Product extends Component {
                     <div className="product__price">{price} {currency}</div>
                     <div className="product__button-wrap">
                         <button className='btn btn-primary'
-                            onClick={this.handleClick}
-                        >
-                            View Details
-                        </button>
+                            onClick={this.togglePopup} >View Details</button>
+                            {this.state.isOpen  && 
+                            <Popup productId={this.props.data.id} handleClose={this.togglePopup}/>}
+                            
                     </div>
                 </div>
             </div>
@@ -34,15 +57,6 @@ class Product extends Component {
     }
 }
 
-Product.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number,
-    currency: PropTypes.string,
-    image: PropTypes.string,
-    isInCart: PropTypes.bool.isRequired,
-    addToCart: PropTypes.func.isRequired,
-    removeFromCart: PropTypes.func.isRequired,
-}
+
 
 export default Product;

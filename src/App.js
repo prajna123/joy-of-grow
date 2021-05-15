@@ -1,30 +1,31 @@
-import React from 'react';
-import './App.css';
-import Cart from './containers/Cart';
-import ProductList from './containers/ProductList';
-import BackgroundImage from './containers/BackgroundImage';
-import logo from './containers/logo.png';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-const App = () => {
-    return (
-        <div className="container">
-            <div className="row-centered">
-                 <button className='btn btn-primary '>Contact Us</button>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
-                <BackgroundImage></BackgroundImage>
-                </div>
-            </div>
-            
-            <div className="row">
-                <div className="col-md-12">
-                    <ProductList />
-                </div>
-            </div>
 
-        </div>
-    );
+import NewQuote from './pages/NewQuote';
+import NotFound from './pages/NotFound';
+import Layout from './components/layout/Layout';
+import ProductList from './components/ProductList/ProductList';
+
+
+function App() {
+  return (
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <Redirect to='/home' />
+        </Route>
+        <Route path='/home' exact>
+          <ProductList />
+        </Route>
+        <Route path='/contact'>
+          <NewQuote />
+        </Route>
+        <Route path='*'>
+          <NotFound />
+        </Route>
+      </Switch>
+    </Layout>
+  );
 }
 
 export default App;
