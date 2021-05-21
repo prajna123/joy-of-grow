@@ -36,14 +36,14 @@ class Product extends Component {
     }
 
     render() {
-        const { name, price, currency, image, isInCart } = this.props.data;
+        const { name, detail, currency, image, isInCart } = this.props.data;
 
         return (
             <div className="product thumbnail">
                 <img src={image} alt="product" />
                 <div className="caption">
-                    <h3>{name}</h3>
-                    <div className="product__price">{price} {currency}</div>
+                    <h2>{name}</h2>
+                    <h3>{detail}</h3>
                     <div className="product__button-wrap">
                         <button className='btn btn-primary'
                             onClick={this.togglePopup} >View Details</button>

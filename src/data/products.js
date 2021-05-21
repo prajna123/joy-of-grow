@@ -2,21 +2,21 @@ const data = [
   {
     id: 1,
     name: 'Investment Advisory',
-    price: 500.00,
+    detail: 'Strategize your future',
     currency: 'INR',
     image: 'images/InAd.jpg',
   },
   {
     id: 2,
     name: 'Portfolio Management',
-    price: 500.00,
+    detail: 'Equity portfolio for Investment',
     currency: 'INR',
     image: 'images/Portfolio.jpg',
   },
   {
     id: 3,
     name: 'Income Generation',
-    price: 500.00,
+    detail: 'Steps towards Financial Freedom',
     currency: 'INR',
     image: 'images/IncomeGen.jpg',
   }
